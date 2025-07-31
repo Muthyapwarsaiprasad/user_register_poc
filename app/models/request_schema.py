@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr,StringConstraints
 from typing import Optional, Annotated, Union
-from datetime import date
+from datetime import datetime
 
 PhoneStr = Annotated[str, StringConstraints(pattern=r'^\+?\d{10,15}$')]
 PasswordStr = Annotated[str, StringConstraints(min_length=8, max_length=20)]
@@ -10,8 +10,8 @@ class RegisterUser(BaseModel):
     password: PasswordStr
     first_name: str
     last_name: str
-    dob: date
-    doj: date
+    dob: datetime
+    doj: datetime
     address: str
     comment: Optional[str] = None
     active: bool = True
