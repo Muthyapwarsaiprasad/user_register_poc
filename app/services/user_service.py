@@ -1,7 +1,7 @@
 from app.database.mongodb import users, tokens
 from app.utils.password_utils import hash_password, verify_password
 from app.exceptions.custom_exceptions import (
-    userAlreadyExistsException,
+    UserAlreadyExistsException,
     PasswordPolicyException,
     TooManyResetRequests,
     TokenExpiredException
@@ -17,7 +17,7 @@ from datetime import datetime, date
 async def register_user(data):
     # check duplicate user
     if users.find_one({"username": data.username}):
-        raise userAlreadyExistsException()
+        raise UserAlreadyExistsException()
     
     # password strength check
     if not is_strong_password(data.password):
@@ -27,17 +27,13 @@ async def register_user(data):
     
     # Convert to dict
     doc = data.dict()
-
-    # for field in ["dob", "doj"]:
-    #     if field in doc and isinstance(doc[field], date) and not isinstance(doc[field], datetime):
-    #         doc[field] = datetime.combine(doc[field], datetime.min.time())
-
+    
     doc["password_changed_at"] = datetime.utcnow()
 
     # insert into MongoDB
-    user_db = users.insert_one(doc)
+    users.insert_one(doc)
 
-    return user_db
+    return {"message": f"Successfully registered with username: {data.username}", "status":"success"}
 
 
     

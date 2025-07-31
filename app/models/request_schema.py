@@ -1,23 +1,23 @@
 from pydantic import BaseModel, EmailStr,StringConstraints
-from typing import Optional, Annotated
-from datetime import datetime
+from typing import Optional, Annotated, Union
+from datetime import date
 
 PhoneStr = Annotated[str, StringConstraints(pattern=r'^\+?\d{10,15}$')]
 PasswordStr = Annotated[str, StringConstraints(min_length=8, max_length=20)]
 
 class RegisterUser(BaseModel):
-    username: EmailStr | PhoneStr
+    username: Union[EmailStr, PhoneStr]
     password: PasswordStr
     first_name: str
     last_name: str
-    dob: datetime
-    doj: datetime
+    dob: date
+    doj: date
     address: str
     comment: Optional[str] = None
     active: bool = True
 
 class LoginModel(BaseModel):
-    username: EmailStr | PhoneStr
+    username: Union[EmailStr, PhoneStr]
     password: PasswordStr
 
 class ChangePasswordModel(BaseModel):
@@ -25,4 +25,4 @@ class ChangePasswordModel(BaseModel):
     new_password: PasswordStr
 
 class ForgotPasswordRequest(BaseModel):
-    username: EmailStr | PhoneStr
+    username: Union[EmailStr, PhoneStr]

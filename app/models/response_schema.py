@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 class MessageModel(BaseModel):
     message: str
-    status: bool
+    status: str
 
 class TokenModel(BaseModel):
     message: str

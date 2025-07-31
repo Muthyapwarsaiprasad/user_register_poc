@@ -12,7 +12,7 @@ def get_logger(name):
     logger.setLevel(logging.DEBUG)
 
     file_handler = logging.FileHandler(LOG_FILE)
-    formatter = logging.Formatter('[%(asctime)s]  [%(levelname)s] [%(name)s:%(lineno)d] [%(funcName)s()] [%(threadName)s] [%(message)s]')
+    formatter = logging.Formatter('[%(asctime)s]  [%(levelname)s] ["Line no" :%(lineno)d] [%(funcName)s()] [%(message)s]')
     file_handler.setFormatter(formatter)
 
     if not logger.handlers:

@@ -18,7 +18,6 @@ def log_execution_time(func):
     async def wrapper(*args, **kwargs):
         start_time = time()
         try:
-            # Check if function is async
             if inspect.iscoroutinefunction(func):
                 result = await func(*args, **kwargs)
             else:
@@ -26,12 +25,15 @@ def log_execution_time(func):
 
             execution_time_ms = round((time() - start_time) * 1000, 2)
             logger.info(f"{func.__name__} executed in {execution_time_ms} ms")
-
             return result
 
+        except HTTPException as http_exc:
+            logger.warning(f"Handled HTTPException in {func.__name__}: {http_exc.status_code} - {http_exc.detail}")
+            raise http_exc
+
         except Exception as e:
-            logger.exception(f"Error in {func.__name__}")
-            return {"error": str(e)}, 500
+            logger.exception(f"Unexpected exception in {func.__name__}: {str(e)}")
+            raise e
 
     return wrapper
 
