@@ -57,4 +57,5 @@ def get_current_user(token: str = Depends(oauth2_scheme)):
         return user
     
     except Exception:
+        logger.error(f"Invalid token")
         raise HTTPException(status_code=401, detail="Invalid token")
