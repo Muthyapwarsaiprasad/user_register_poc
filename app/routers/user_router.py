@@ -4,7 +4,7 @@ from app.models.request_schema import (
 )
 from app.models.response_schema import MessageModel, TokenModel
 from app.services.user_service import (
-    register_user, user_change_password, generate_reset_token
+    register_user, user_change_password, generate_reset_token, confirm_reset_token
 )
 from app.services.auth_service import user_login
 from app.exceptions.custom_exceptions import (
@@ -83,7 +83,7 @@ async def forgot_password(req: ForgotPasswordRequest, bg: BackgroundTasks):
         return {"message": "Reset token sent if user exists", "status": "success"}
 
     except TokenExpiredException as e:
-        logger.warning(f"Too many token requests for {req.username}: {str(e)}")
+        logger.warning(f"Too many token requests for {req.username}: {e.detail}")
         raise e
 
     except HTTPException as e:
@@ -96,9 +96,10 @@ async def forgot_password(req: ForgotPasswordRequest, bg: BackgroundTasks):
 
 # Reset password
 @router.post("/reset-password", response_model=MessageModel)
+@log_execution_time
 async def reset_password(username:str, token:str, new_password:str):
     try:
-        response = await generate_reset_token(username,token,new_password)
+        response = await confirm_reset_token(username,token,new_password)
         logger.info(f"Successfully reset password for username {username}")
         return response
     

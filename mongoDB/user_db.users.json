@@ -1,0 +1,42 @@
+[{
+  "_id": {
+    "$oid": "688e060b3b62c1eff38f5f35"
+  },
+  "username": "sai@gmail.com",
+  "password": "$2b$12$TCE2Odlb88JM7jFTx.8rjOchO2Wn3FOWAMBGIX4MMEnw.qqaBY1be",
+  "first_name": "sai",
+  "last_name": "prasad",
+  "dob": {
+    "$date": "1990-01-01T00:00:00.000Z"
+  },
+  "doj": {
+    "$date": "2025-07-01T00:00:00.000Z"
+  },
+  "address": "Nagpur",
+  "comment": "Test user",
+  "active": true,
+  "password_changed_at": {
+    "$date": "2025-08-02T12:39:15.676Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "688e0974b22940ee292eb2e3"
+  },
+  "username": "98213795459",
+  "password": "$2b$12$wEKY0rsdqBGcRMe7CyAsvuK1zjFLl/ebf/.ztboX6JgGW4Vsi4DkO",
+  "first_name": "ram",
+  "last_name": "lakan",
+  "dob": {
+    "$date": "1998-11-01T00:00:00.000Z"
+  },
+  "doj": {
+    "$date": "2023-04-23T00:00:00.000Z"
+  },
+  "address": "pune",
+  "comment": "reviewer",
+  "active": true,
+  "password_changed_at": {
+    "$date": "2025-08-02T12:53:35.817Z"
+  }
+}]

@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "80739c3f-fdaa-4c62-8c1f-1f547bab374b",
+		"name": "user login",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "44761608",
+		"_collection_link": "https://prasad-666947.postman.co/workspace/prasad's-Workspace~94b7bbad-5b40-4f0b-8e97-62d59a0c04c4/collection/44761608-80739c3f-fdaa-4c62-8c1f-1f547bab374b?action=share&source=collection_link&creator=44761608"
+	},
+	"item": [
+		{
+			"name": "user register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"sai@gmail.com\",\r\n  \"password\": \"Msai%123s\",\r\n  \"first_name\": \"sai\",\r\n  \"last_name\": \"prasad\",\r\n  \"dob\": \"1990-01-01\",\r\n  \"doj\": \"2025-07-01\",\r\n  \"address\": \"Nagpur\",\r\n  \"comment\": \"Test user\",\r\n  \"active\": true\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/register",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"sai@gmail.com\",\r\n  \"password\": \"Msai%123s\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Reset Password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/reset-password?username=sai@gmail.com&token=3783fb0e-3ece-4ef4-b0bc-e9429c14344b&new_password=Msaki!0121",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"reset-password"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "sai@gmail.com"
+						},
+						{
+							"key": "token",
+							"value": "3783fb0e-3ece-4ef4-b0bc-e9429c14344b"
+						},
+						{
+							"key": "new_password",
+							"value": "Msaki!0121"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Forgot Password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"username\": \"sai@gmail.com\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/forgot-password",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"forgot-password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjg4ZTA2MGIzYjYyYzFlZmYzOGY1ZjM1IiwiZXhwIjoxNzU0MTM5OTY3fQ.Xx-IJQImFqjqIdhv3VzrDf1T1VOPJUyUE8Yj7rQohAI",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"old_password\": \"Msai%123s\",\r\n  \"new_password\": \"Msai@12345\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/user/change-password",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"user",
+						"change-password"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
